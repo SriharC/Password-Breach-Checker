@@ -1,11 +1,13 @@
 import hashlib
 import requests
+import sys
 
 
 def password_input():
+    args = sys.argv
     global user_password
+    user_password = args[1]
     while True:
-        user_password = input("Enter your password: ")
         if len(user_password) < 8:
             return "Your password is too short. Please enter a password of at least 8 characters."
         else:
