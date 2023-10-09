@@ -1,7 +1,7 @@
 # PwnedChecker
 PwnedChecker allows you to check if your password has been compromised in any data breaches by leveraging the HaveIBeenPwned API. It creates a SHA-1 hash of the password, and sends a request using the first five characters of the hash to the API, and processes the response to determine if the password has been pwned.
 
-SHA-1 is depracated, but unfortunately that is what HaveIBeenPwned is using for password hashes, so this program utilizes SHA-1 instead of SHA-256.
+SHA-1 is deprecated, but unfortunately that is what HaveIBeenPwned is using for password hashes, so this program utilizes SHA-1 instead of SHA-256.
 
 # Key Features:
 Password Hashing: Utilizes 'hashlib' for SHA-1 hashing algorithm to securely hash the user's password.
