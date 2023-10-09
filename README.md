@@ -19,9 +19,11 @@ The program will hash your password, check for breaches, and display the results
 
 # Usage Example:
 
-Without command-line argument '--show-hash'
+Without command-line argument '--show-hash':
+
 ![image](https://github.com/SriharC/Password-Breach-Checker/assets/42175655/e66e4d7b-3db8-4911-af03-7c1a8d771cc1)
 
 
-With command-line argument '--show-hash'
+With command-line argument '--show-hash':
+
 ![image](https://github.com/SriharC/Password-Breach-Checker/assets/42175655/fea5f5bb-f74e-41f8-9099-7bef507a5838)
