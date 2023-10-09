@@ -3,8 +3,11 @@ This Python script allows you to check if your password has been compromised in 
 
 # Key Features:
 Password Hashing: Utilizes 'hashlib' for SHA-1 hashing algorithm to securely hash the user's password.
+
 API Integration: Makes use of the HaveIBeenPwned's API to verify if the password has been exposed in data breaches.
+
 Response Processing: Parses the API response to find the complete hash and retrieve the count of breaches.
+
 User-Friendly Interaction: Guides the user through the process with clear prompts and informative messages.
 
 # Usage:
