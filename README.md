@@ -9,7 +9,9 @@ User-Friendly Interaction: Guides the user through the process with clear prompt
 
 # Usage:
 Clone the repository or download the Python script.
+
 Run the script in a terminal and follow the prompts to input your password.
+
 The program will hash your password, check for breaches, and display the results.
 
 # Usage Example:
