@@ -3,6 +3,36 @@ import requests
 import argparse
 
 
+def banner():
+    RED = "\33[91m"
+    BLUE = "\33[94m"
+    GREEN = "\033[32m"
+    YELLOW = "\033[93m"
+    PURPLE = '\033[0;35m'
+    RESET = "\033[0m"
+
+    try:
+        with open("banner.txt", "r") as file:
+            banner_read = file.read()
+            user_option = input("Do you want to customize PwnedChecker? ")
+            if user_option.lower() == 'yes':
+                color_input = input("Program Color? (Red, Blue, Green, Yellow, Purple): ")
+                if color_input.lower() == 'red':
+                    print(f"{RED}{banner_read}{RESET}")
+                elif color_input.lower() == 'blue':
+                    print(f"{BLUE}{banner_read}{RESET}")
+                elif color_input.lower() == 'green':
+                    print(f"{GREEN}{banner_read}{RESET}")
+                elif color_input.lower() == 'yellow':
+                    print(f"{YELLOW}{banner_read}{RESET}")
+                elif color_input.lower() == 'purple':
+                    print(f"{PURPLE}{banner_read}{RESET}")
+            else:
+                print(banner_read)
+    except FileNotFoundError:
+        print("No banner file found.")
+
+
 def password_input():
     global user_password
     while True:
@@ -55,6 +85,7 @@ def pwned_response(response, sha_hash, show_hash):
 
 
 if __name__ == "__main__":
+    banner()
     parser = argparse.ArgumentParser(description="Password breach checker")
     parser.add_argument("--show-hash", action="store_true", help="Show the hashed password")
     args = parser.parse_args()
