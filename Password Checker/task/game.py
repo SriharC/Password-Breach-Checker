@@ -1,25 +1,24 @@
 import hashlib
 import requests
-import sys
+import argparse
 
 
 def password_input():
-    args = sys.argv
     global user_password
-    user_password = args[1]
     while True:
-        if len(user_password) < 8:
+        user_password = input("Enter your password (or 'exit' to quit): ")
+        if user_password.lower() == 'exit':
+            print("Goodbye!")
+            return None
+        elif len(user_password) < 8:
             return "Your password is too short. Please enter a password of at least 8 characters."
         else:
-            break
-    return user_password
+            return user_password
 
 
 def password_hash(user_password):
     global sha_hash
     sha_hash = hashlib.sha1(user_password.encode('utf-8')).hexdigest()
-    print("Your hashed password is: " + sha_hash)
-    print("Checking...")
     return sha_hash
 
 
@@ -34,11 +33,11 @@ def pass_checker(sha_hash):
     five_join = "".join(first_five)
     api_url = "https://api.pwnedpasswords.com/range/{}".format(five_join)
     response = requests.get(api_url, params=params)
-    print("A request was sent to " + str(api_url) + " endpoint, awaiting response...")
+    print("Checking...")
     return response
 
 
-def pwned_response(response, sha_hash):
+def pwned_response(response, sha_hash, show_hash):
     if response.status_code == 200:
         response_text = response.text
         complete_hash = sha_hash.upper()[5:]
@@ -47,6 +46,8 @@ def pwned_response(response, sha_hash):
             if line.startswith(complete_hash):
                 count = int(line.split(':')[1])
                 break
+        if show_hash:
+            print("Your hashed password is: " + sha_hash)
         if count > 0:
             print("Your password has been pwned! The password \"{}\" appears {} times in data breaches.".format(str(user_password), count))
         else:
@@ -54,7 +55,14 @@ def pwned_response(response, sha_hash):
 
 
 if __name__ == "__main__":
-    user_password = password_input()
-    sha_hash = password_hash(user_password)
-    response = pass_checker(sha_hash)
-    pwned_response(response, sha_hash)
+    parser = argparse.ArgumentParser(description="Password breach checker")
+    parser.add_argument("--show-hash", action="store_true", help="Show the hashed password")
+    args = parser.parse_args()
+
+    while True:
+        user_password = password_input()
+        if user_password is None:
+            break
+        sha_hash = password_hash(user_password)
+        response = pass_checker(sha_hash)
+        pwned_response(response, sha_hash, args.show_hash)
