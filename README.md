@@ -1,15 +1,4 @@
 # PwnedChecker
-
-
-______                         _ _____ _               _             
-| ___ \                       | /  __ \ |             | |            
-| |_/ /_      ___ __   ___  __| | /  \/ |__   ___  ___| | _____ _ __ 
-|  __/\ \ /\ / / '_ \ / _ \/ _` | |   | '_ \ / _ \/ __| |/ / _ \ '__|
-| |    \ V  V /| | | |  __/ (_| | \__/\ | | |  __/ (__|   <  __/ |   
-\_|     \_/\_/ |_| |_|\___|\__,_|\____/_| |_|\___|\___|_|\_\___|_|   
-                                                                     
-                                                                     
-
 This Python script allows you to check if your password has been compromised in any data breaches by leveraging the HaveIBeenPwned API. It creates a SHA-1 hash of the password, and sends a request using the first five characters of the hash to the API, and processes the response to determine if the password has been pwned.
 
 # Key Features:
